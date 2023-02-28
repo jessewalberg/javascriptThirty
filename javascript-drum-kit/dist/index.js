@@ -1,13 +1,15 @@
 "use strict";
-const keys = document.getElementsByClassName("key");
 const audio = document.getElementsByTagName("audio");
-const keysArray = Array.from(keys);
-console.log(keysArray);
 const audioArray = Array.from(audio);
-console.log(audioArray);
-keysArray.forEach((key) => {
-    if (key instanceof HTMLElement) {
-        console.log(key.dataset.key);
-    }
-    key.addEventListener("keydown", (event) => { });
-});
+const handleKeyPress = (event) => {
+    const targetKey = event.keyCode;
+    console.log(targetKey);
+    const keyElement = Array.from(document.querySelectorAll(`[data-key="${targetKey}"]`));
+    keyElement[0].classList.add("playing");
+    const audioElement = keyElement[1];
+    audioElement.play();
+    setTimeout(() => {
+        keyElement[0].classList.remove("playing");
+    }, 500);
+};
+document.addEventListener("keydown", handleKeyPress);
