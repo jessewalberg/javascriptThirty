@@ -1,19 +1,19 @@
-console.log("starter");
 const hourHand = document.querySelector(".hour-hand");
 const minuteHand = document.querySelector(".minute-hand");
-const secondHand = document.querySelector("second-hand");
+const secondHand = document.querySelector(".second-hand") as HTMLElement;
 
 const makeClockAlive = () => {
   const date = new Date();
 
   let seconds = date.getSeconds();
   let minutes = date.getMinutes();
-  let hours = date.getHours();
-  console.log(seconds, minutes, hours);
+  let hours = date.getMinutes();
 
-  // Just a small commit to make sure I am committing something everyday and staying on track
-  // Its been a long day with the wife and kids
-  // Next I will have to associate 360 degrees with the seconds minutes and hours.
+  const secondsDegree = (seconds / 60) * 360;
+  console.log(secondHand);
+  if (secondHand) secondHand.style.transform = `rotate(${secondsDegree}deg)`;
+  const minutesDegree = (minutes / 60) * 360;
+  const hoursDegree = (minutes / 60) * 360;
 };
 
 setInterval(() => {
